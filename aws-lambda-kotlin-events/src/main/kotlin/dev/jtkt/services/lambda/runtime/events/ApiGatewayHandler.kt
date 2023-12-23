@@ -10,7 +10,7 @@ import java.io.InputStream
 import java.io.OutputStream
 
 @ExperimentalSerializationApi
-interface ApiGatewayHandler : RequestStreamHandler {
+fun interface ApiGatewayHandler : RequestStreamHandler {
 
     val json: Json
         get() = Json
