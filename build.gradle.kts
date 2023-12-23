@@ -2,28 +2,43 @@ plugins {
     kotlin("jvm") version "1.9.21"
     kotlin("plugin.serialization") version "1.9.21"
     jacoco
-    id("net.razvan.jacoco-to-cobertura") version "1.1.2"
+    id("net.razvan.jacoco-to-cobertura") version "1.2.0"
 }
 version = "1.0.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
-dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-    implementation("com.amazonaws:aws-lambda-java-core:1.2.3")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-}
+subprojects {
+    apply(plugin="kotlin")
+    apply(plugin="jacoco")
+    apply(plugin="kotlinx-serialization")
 
-tasks.test {
-    useJUnitPlatform()
-}
+    dependencies {
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+        implementation("com.amazonaws:aws-lambda-java-core:1.2.3")
+        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    }
 
-kotlin {
-    jvmToolchain(17)
-}
+    tasks.test {
+        useJUnitPlatform()
+    }
 
-jacoco {
-    toolVersion = "0.8.11"
+    kotlin {
+        jvmToolchain(17)
+    }
+
+    jacoco {
+        toolVersion = "0.8.11"
+    }
+
+    val jacocoTestReport by tasks.getting(JacocoReport::class) {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
+    }
 }
