@@ -19,6 +19,11 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.withType<Wrapper> {
+    gradleVersion = "8.5"
+}
+
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
