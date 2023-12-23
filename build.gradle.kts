@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.9.21"
     kotlin("plugin.serialization") version "1.9.21"
     jacoco
+    id("jacoco-report-aggregation")
 }
 
 group = "dev.jtkt"
