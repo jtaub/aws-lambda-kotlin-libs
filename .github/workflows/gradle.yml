@@ -39,8 +39,3 @@ jobs:
       with:
         name: Package
         path: build/libs
-    - name: Code Coverage Summary
-      uses: irongut/CodeCoverageSummary@v1.3.0
-      with:
-        filename: coverage.cobertura.xml
-        badge: true

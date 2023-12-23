@@ -2,8 +2,9 @@ plugins {
     kotlin("jvm") version "1.9.21"
     kotlin("plugin.serialization") version "1.9.21"
     jacoco
-    id("net.razvan.jacoco-to-cobertura") version "1.2.0"
 }
+
+group = "dev.jtkt"
 version = "1.0.0-SNAPSHOT"
 
 allprojects {
@@ -13,9 +14,11 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin="kotlin")
-    apply(plugin="jacoco")
-    apply(plugin="kotlinx-serialization")
+    apply {
+        plugin("kotlin")
+        plugin("jacoco")
+        plugin("kotlinx-serialization")
+    }
 
     dependencies {
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
