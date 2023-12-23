@@ -2,8 +2,8 @@
 
 Very unofficial repo for interfaces and helper classes for Kotlin on AWS Lambda (without baggage from Java)
 
-This project aims to provide Kotlin-first support for AWS Lambda, with feature parity with AWS's own (
-aws-lambda-java-libs)[https://github.com/aws/aws-lambda-java-libs]
+This project aims to provide Kotlin-first support for AWS Lambda, with feature parity with AWS's own 
+[aws-lambda-java-libs](https://github.com/aws/aws-lambda-java-libs)
 
 ## Design Goals
 
