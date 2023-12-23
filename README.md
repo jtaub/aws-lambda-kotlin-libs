@@ -7,7 +7,7 @@ This project aims to provide Kotlin-first support for AWS Lambda, with feature p
 
 ## Design Goals
 
-Using Kotlin on AWS Lambda is pretty easy via the JAVA runtime, and for the most part, the Java libraries play very will
+Using Kotlin on AWS Lambda is pretty easy via the JAVA runtime, and for the most part, the Java libraries play very well
 with Kotlin.
 There are a couple of pain points though, which this project aims to address.
 
