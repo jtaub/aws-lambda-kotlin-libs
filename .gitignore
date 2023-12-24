@@ -34,3 +34,4 @@ replay_pid*
 */build/
 target/
 out/
+/build/
