@@ -1,5 +1,9 @@
-package dev.jtkt.services.lambda.runtime.events
+package dev.jtkt.services.lambda.runtime.events.apigw.proxy
 
+import dev.jtkt.services.lambda.runtime.events.apigw.Authorizer
+import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -14,15 +18,10 @@ data class ApiGatewayProxyRequestEvent(
     val multiValueQueryStringParameters: Map<String, List<String>> = emptyMap(),
     val pathParameters: Map<String, String> = emptyMap(),
     val stageVariables: Map<String, String> = emptyMap(),
-    val requestContext: ProxyRequestContext = ProxyRequestContext(),
+    val requestContext: ProxyRequestContext = ProxyRequestContext(httpMethod = httpMethod),
     val body: String? = null,
     val isBase64Encoded: Boolean = false,
 )
-
-@Serializable
-enum class HttpMethod {
-    GET, PUT, POST, DELETE, HEAD, OPTIONS,
-}
 
 @Serializable
 data class ProxyRequestContext(
@@ -33,13 +32,13 @@ data class ProxyRequestContext(
     val operationName: String? = null,
     val identity: RequestIdentity = RequestIdentity(),
     val resourcePath: String? = null,
-    val httpMethod: String? = null,
+    val httpMethod: HttpMethod = HttpMethod.GET,
     val apiId: String? = null,
     val path: String? = null,
     val authorizer: Map<String, Authorizer> = emptyMap(),
     val extendedRequestId: String? = null,
-    val requestTime: String? = null,
-    val requestTimeEpoch: Long? = null,
+    val requestTime: Instant = Clock.System.now(),
+    val requestTimeEpoch: Long = requestTime.epochSeconds,
     val domainName: String? = null,
     val domainPrefix: String? = null,
     val protocol: String? = null,
@@ -47,17 +46,17 @@ data class ProxyRequestContext(
 
 @Serializable
 data class RequestIdentity(
-    val cognitoIdentityPoolId: String? = null,
-    val accountId: String? = null,
-    val cognitoIdentityId: String? = null,
-    val caller: String? = null,
-    val apiKey: String? = null,
-    val principalOrgId: String? = null,
-    val sourceIp: String? = null,
-    val cognitoAuthenticationType: String? = null,
-    val cognitoAuthenticationProvider: String? = null,
-    val userArn: String? = null,
-    val userAgent: String? = null,
-    val user: String? = null,
-    val accessKey: String? = null,
+    val accessKey: String = "",
+    val accountId: String = "",
+    val apiKey: String = "",
+    val caller: String = "",
+    val cognitoAuthenticationProvider: String = "",
+    val cognitoAuthenticationType: String = "",
+    val cognitoIdentityId: String = "",
+    val cognitoIdentityPoolId: String = "",
+    val principalOrgId: String = "",
+    val sourceIp: String = "",
+    val user: String = "",
+    val userAgent: String = "",
+    val userArn: String = "",
 )

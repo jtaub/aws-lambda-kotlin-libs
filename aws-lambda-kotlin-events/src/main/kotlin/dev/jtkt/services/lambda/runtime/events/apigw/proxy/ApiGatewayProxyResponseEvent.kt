@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events
+package dev.jtkt.services.lambda.runtime.events.apigw.proxy
 
 import kotlinx.serialization.Serializable
 import org.intellij.lang.annotations.Language

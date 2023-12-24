@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events
+package dev.jtkt.services.lambda.runtime.events.apigw.proxy
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
@@ -8,9 +8,9 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @ExperimentalSerializationApi
-class ApiGatewayHandlerTest {
+class ApiGatewayProxyHandlerTest {
 
-    private val candidate = ApiGatewayHandler { event, _ ->
+    private val candidate = ApiGatewayProxyHandler { event, _ ->
         ApiGatewayProxyResponseEvent(body = """{"msg": "Hello, ${event.body}!"}""")
     }
 

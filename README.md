@@ -1,9 +1,9 @@
 # aws-lambda-kotlin-libs
 
-Very unofficial repo for interfaces and helper classes for Kotlin on AWS Lambda (without baggage from Java)
+An unofficial, work in progress to bring first-class Kotlin support to AWS Lambda (without baggage from Java).
 
-This project aims to provide Kotlin-first support for AWS Lambda, with feature parity with AWS's own
-[aws-lambda-java-libs](https://github.com/aws/aws-lambda-java-libs) from which this is derived from.
+This project aims to provide feature parity with AWS's own
+[aws-lambda-java-libs](https://github.com/aws/aws-lambda-java-libs) from which this is derived from (but is not affiliated with in any way).
 
 ## Design Goals
 
@@ -21,9 +21,10 @@ These are actually pain-points from Java as well, but the problems are amplified
 
 This project aims to deliver:
 
+* Kotlin-first APIs.
 * Reduced cold start times.
 * Smaller binary sizes.
-* Kotlin-first APIs.
+* Type safety - no use of `Object` or `Any` types. Strings will be replaced by enums where possible.
 
 ## Non-goals
 
@@ -33,6 +34,6 @@ This project aims to deliver:
 ## Roadmap
 
 * (In-progress) Achieve feature parity with the official AWS Java libraries.
-* Provide a suite of concrete examples
+* Provide a suite of concrete examples.
 * Kotlin multiplatform support + support for the Lambda Node runtime.
-* GraalVM native image support
+* GraalVM native image support.

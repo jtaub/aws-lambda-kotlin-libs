@@ -1,9 +1,9 @@
-package dev.jtkt.services.lambda.runtime.events
+package dev.jtkt.services.lambda.runtime.events.apigw.v2.http
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class APIGatewayCustomAuthorizerEvent(
+data class ApiGatewayCustomAuthorizerEvent(
     val version: String = "",
     val type: String = "",
     val methodArn: String = "",
@@ -20,15 +20,15 @@ data class APIGatewayCustomAuthorizerEvent(
 ) {
     @Serializable
     data class RequestContext(
-        val path: String = "",
         val accountId: String = "",
-        val resourceId: String = "",
-        val stage: String = "",
-        val requestId: String = "",
-        val identity: Identity = Identity(),
-        val resourcePath: String = "",
-        val httpMethod: String = "",
         val apiId: String = "",
+        val httpMethod: String = "",
+        val identity: Identity = Identity(),
+        val path: String = "",
+        val requestId: String = "",
+        val resourceId: String = "",
+        val resourcePath: String = "",
+        val stage: String = "",
     )
 
     @Serializable
