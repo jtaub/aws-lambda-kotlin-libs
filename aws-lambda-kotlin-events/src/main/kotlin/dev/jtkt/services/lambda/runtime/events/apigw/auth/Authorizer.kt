@@ -1,6 +1,5 @@
-package dev.jtkt.services.lambda.runtime.events.apigw
+package dev.jtkt.services.lambda.runtime.events.apigw.auth
 
-import dev.jtkt.services.lambda.runtime.events.apigw.v2.IamPolicyResponse
 import kotlinx.serialization.Serializable
 import com.amazonaws.services.lambda.runtime.CognitoIdentity as ICognitoIdentity
 

@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events.apigw.v2
+package dev.jtkt.services.lambda.runtime.events.apigw.auth
 
 import kotlinx.serialization.Serializable
 

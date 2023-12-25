@@ -1,6 +1,7 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.websocket
-import dev.jtkt.services.lambda.runtime.events.apigw.Authorizer
+
 import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
+import dev.jtkt.services.lambda.runtime.events.apigw.auth.Authorizer
 import dev.jtkt.services.lambda.runtime.events.apigw.proxy.RequestIdentity
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.ApiGatewayV2Event
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.RequestContext

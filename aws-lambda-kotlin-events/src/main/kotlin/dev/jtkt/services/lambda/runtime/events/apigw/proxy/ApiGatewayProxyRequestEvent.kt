@@ -1,8 +1,8 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.proxy
 
 import com.amazonaws.services.lambda.runtime.CognitoIdentity
-import dev.jtkt.services.lambda.runtime.events.apigw.Authorizer
 import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
+import dev.jtkt.services.lambda.runtime.events.apigw.auth.Authorizer
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
