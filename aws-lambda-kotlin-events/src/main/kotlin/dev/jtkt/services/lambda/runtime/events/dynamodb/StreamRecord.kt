@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events.model.dynamodb
+package dev.jtkt.services.lambda.runtime.events.dynamodb
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
