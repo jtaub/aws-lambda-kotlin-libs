@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events.kinesis
+package dev.jtkt.services.lambda.runtime.events.kinesis.analytics
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant

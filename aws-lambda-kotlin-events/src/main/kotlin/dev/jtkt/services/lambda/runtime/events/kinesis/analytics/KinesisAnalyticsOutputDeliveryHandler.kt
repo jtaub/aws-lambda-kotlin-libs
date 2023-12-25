@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events.kinesis
+package dev.jtkt.services.lambda.runtime.events.kinesis.analytics
 
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler
