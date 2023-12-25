@@ -1,5 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.proxy
 
+import com.amazonaws.services.lambda.runtime.CognitoIdentity
 import dev.jtkt.services.lambda.runtime.events.apigw.Authorizer
 import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
 import kotlinx.datetime.Clock
@@ -59,4 +60,7 @@ data class RequestIdentity(
     val user: String = "",
     val userAgent: String = "",
     val userArn: String = "",
-)
+) : CognitoIdentity {
+    override fun getIdentityId() = cognitoIdentityId
+    override fun getIdentityPoolId() = cognitoIdentityPoolId
+}

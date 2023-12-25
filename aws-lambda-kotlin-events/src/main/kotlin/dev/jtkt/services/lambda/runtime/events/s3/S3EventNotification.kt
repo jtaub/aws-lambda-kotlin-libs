@@ -1,8 +1,10 @@
-package dev.jtkt.services.lambda.runtime.events.model.s3
+package dev.jtkt.services.lambda.runtime.events.s3
 
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 import java.net.URLDecoder
+
+typealias S3Event = S3EventNotification
 
 @JvmInline
 @Serializable
