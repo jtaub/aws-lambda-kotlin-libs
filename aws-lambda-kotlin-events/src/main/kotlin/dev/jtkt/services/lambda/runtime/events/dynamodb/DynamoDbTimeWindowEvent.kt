@@ -1,5 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.dynamodb
 
+import dev.jtkt.services.lambda.runtime.events.shared.TimeWindow
 import kotlinx.serialization.Serializable
 
 /**

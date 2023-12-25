@@ -1,6 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.kinesis
 
-import dev.jtkt.services.lambda.runtime.events.dynamodb.TimeWindow
+import dev.jtkt.services.lambda.runtime.events.shared.TimeWindow
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
