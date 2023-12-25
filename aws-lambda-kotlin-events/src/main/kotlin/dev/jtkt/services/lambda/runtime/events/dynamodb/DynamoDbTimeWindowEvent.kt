@@ -1,7 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.dynamodb
 
 import kotlinx.serialization.Serializable
-import dev.jtkt.services.lambda.runtime.events.model.TimeWindow
 
 /**
  * Represents an Amazon Dynamodb event when using time windows.

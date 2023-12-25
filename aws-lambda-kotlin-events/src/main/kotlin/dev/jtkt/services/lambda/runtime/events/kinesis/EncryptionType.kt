@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events.model.kinesis
+package dev.jtkt.services.lambda.runtime.events.kinesis
 
 enum class EncryptionType(val value: String) {
     NONE("NONE"),
