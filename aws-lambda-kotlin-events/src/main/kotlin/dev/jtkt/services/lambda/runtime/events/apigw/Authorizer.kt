@@ -1,44 +1,21 @@
 package dev.jtkt.services.lambda.runtime.events.apigw
 
+import dev.jtkt.services.lambda.runtime.events.apigw.v2.IamPolicyResponse
 import kotlinx.serialization.Serializable
+import com.amazonaws.services.lambda.runtime.CognitoIdentity as ICognitoIdentity
 
 @Serializable
 data class Authorizer(
     val jwt: JWT = JWT(),
-    val lambda: Map<String, LambdaAuthResponse> = emptyMap(),
+    val lambda: Map<String, IamPolicyResponse> = emptyMap(),
     val iam: IAM = IAM(),
-) {
-    @Serializable
-    data class JWT(
-        val claims: Map<String, String> = emptyMap(),
-        val scopes: List<String> = emptyList(),
-    )
-}
-
-@Serializable
-data class LambdaAuthResponse(
-    val principalId: String = "",
-    val policyDocument: PolicyDocument = PolicyDocument(),
-    val context: Map<String, String> = emptyMap(),
 )
 
 @Serializable
-data class PolicyDocument(
-    val version: String = "",
-    val statements: List<PolicyStatement> = emptyList(),
+data class JWT(
+    val claims: Map<String, String> = emptyMap(),
+    val scopes: List<String> = emptyList(),
 )
-
-@Serializable
-data class PolicyStatement(
-    val action: String,
-    val resource: String,
-    val effect: Effect = Effect.ALLOW,
-)
-
-@Serializable
-enum class Effect {
-    ALLOW, DENY,
-}
 
 @Serializable
 data class IAM(
@@ -55,5 +32,8 @@ data class IAM(
         val amr: List<String> = emptyList(),
         val identityId: String = "",
         val identityPoolId: String = "",
-    )
+    ) : ICognitoIdentity {
+        override fun getIdentityId() = identityId
+        override fun getIdentityPoolId() = identityPoolId
+    }
 }
