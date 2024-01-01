@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CognitoUserPoolCustomMessageEvent(
-    val request: Request = Request(),
+    override val request: Request = Request(),
     val response: Response = Response(),
     override val version: String = "",
     override val triggerSource: String = "",

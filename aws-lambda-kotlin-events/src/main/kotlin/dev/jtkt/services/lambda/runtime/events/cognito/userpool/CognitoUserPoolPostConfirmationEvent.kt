@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CognitoUserPoolPostConfirmationEvent(
-    val request: Request = Request(),
+    override val request: Request = Request(),
     override val version: String = "",
     override val triggerSource: String = "",
     override val region: String = "",

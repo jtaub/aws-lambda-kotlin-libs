@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 interface CognitoUserPoolEvent {
 
+    val request: Request
     val version: String
     val triggerSource: String
     val region: String
