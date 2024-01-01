@@ -1,7 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.auth
 
 import kotlinx.serialization.Serializable
-import com.amazonaws.services.lambda.runtime.CognitoIdentity as ICognitoIdentity
 
 @Serializable
 data class Authorizer(
@@ -31,8 +30,5 @@ data class IAM(
         val amr: List<String> = emptyList(),
         val identityId: String = "",
         val identityPoolId: String = "",
-    ) : ICognitoIdentity {
-        override fun getIdentityId() = identityId
-        override fun getIdentityPoolId() = identityPoolId
-    }
+    )
 }
