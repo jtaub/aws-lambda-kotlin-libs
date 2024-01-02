@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class Http(
     val method: HttpMethod = HttpMethod.GET,
     val path: String = "/",
-    val protocol: String? = null,
-    val sourceIp: String? = null,
-    val userAgent: String? = null
+    val protocol: String = "",
+    val sourceIp: String = "",
+    val userAgent: String = "",
 )

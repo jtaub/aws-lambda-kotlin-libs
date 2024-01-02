@@ -53,3 +53,8 @@ data class RestApiIamPolicyResponse(
     override val principalId: String = "",
     val usageIdentifierKey: String = "",
 ) : IamPolicyResponse
+
+interface SimpleIamPolicyResponse {
+    val isAuthorized: Boolean
+    val context: Map<String, String>
+}
