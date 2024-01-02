@@ -1,5 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.websocket
 
+import dev.jtkt.services.lambda.runtime.events.TimeUtils.nowEpochMillis
 import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
 import dev.jtkt.services.lambda.runtime.events.apigw.auth.Authorizer
 import dev.jtkt.services.lambda.runtime.events.apigw.proxy.RequestIdentity
@@ -32,6 +33,7 @@ data class ApiGatewayV2WebSocketEvent(
         override val requestId: String = "",
         override val routeKey: String = "",
         override val stage: String = "",
+        override val timeEpoch: Long = nowEpochMillis(),
         val authorizer: Authorizer = Authorizer(),
         val connectedAt: Long = 0L,
         val connectionId: String = "",
@@ -43,13 +45,12 @@ data class ApiGatewayV2WebSocketEvent(
         val integrationLatency: String = "",
         val messageDirection: String = "",
         val messageId: String = "",
-        val requestTime: Instant = Clock.System.now(),
-        val requestTimeEpoch: Long = requestTime.epochSeconds,
+        val requestTimeEpoch: Long = timeEpoch,
         val resourceId: String = "",
         val resourcePath: String = "",
         val status: String = "",
     ) : RequestContext {
-        override val time: Instant = requestTime
-        override val timeEpoch: Long = requestTimeEpoch
+
+        val requestTime: Instant = Instant.fromEpochMilliseconds(requestTimeEpoch)
     }
 }

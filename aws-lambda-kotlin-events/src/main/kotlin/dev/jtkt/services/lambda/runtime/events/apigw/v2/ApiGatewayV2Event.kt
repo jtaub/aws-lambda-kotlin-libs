@@ -22,6 +22,7 @@ interface RequestContext {
     val requestId: String
     val routeKey: String
     val stage: String
-    val time: Instant
     val timeEpoch: Long
+    val time: Instant
+        get() = Instant.fromEpochMilliseconds(timeEpoch)
 }

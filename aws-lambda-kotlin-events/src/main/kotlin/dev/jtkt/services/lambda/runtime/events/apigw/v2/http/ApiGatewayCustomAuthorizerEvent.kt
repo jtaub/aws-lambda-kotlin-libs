@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ApiGatewayCustomAuthorizerEvent(
-    val version: String = "",
+    val version: String = "1.0",
     val type: String = "",
     val methodArn: String = "",
     val identitySource: String = "",
