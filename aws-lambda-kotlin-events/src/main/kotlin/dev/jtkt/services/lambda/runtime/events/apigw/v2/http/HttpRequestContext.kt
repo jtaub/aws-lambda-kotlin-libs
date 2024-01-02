@@ -11,10 +11,10 @@ data class HttpRequestContext(
     override val accountId: String = "",
     override val apiId: String = "",
     override val domainName: String = "",
-    val domainPrefix: String = "",
-    val http: Http = Http(),
     override val requestId: String = "",
     override val routeKey: String = "",
     override val stage: String = "",
     override val timeEpoch: Long = nowEpochMillis(),
+    val domainPrefix: String = "",
+    val http: Http = Http(),
 ) : RequestContext
