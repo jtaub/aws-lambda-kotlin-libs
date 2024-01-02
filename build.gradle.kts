@@ -1,8 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.21"
     kotlin("plugin.serialization") version "1.9.21"
-    jacoco
-    id("jacoco-report-aggregation")
+    id("org.jetbrains.kotlinx.kover") version "0.7.5"
 }
 
 group = "dev.jtkt"
@@ -14,11 +13,34 @@ allprojects {
     }
 }
 
+dependencies {
+    implementation(project(":aws-lambda-kotlin-events"))
+    testImplementation(kotlin("test"))
+
+    kover(project(":aws-lambda-kotlin-events"))
+}
+
+koverReport {
+    filters {
+        includes {
+            classes("dev.jtkt.*")
+        }
+    }
+
+    verify {
+        rule {
+            bound {
+                minValue = 4
+            }
+        }
+    }
+}
+
 subprojects {
     apply {
         plugin("kotlin")
-        plugin("jacoco")
         plugin("kotlinx-serialization")
+        plugin("org.jetbrains.kotlinx.kover")
     }
 
     dependencies {
@@ -33,16 +55,5 @@ subprojects {
 
     kotlin {
         jvmToolchain(17)
-    }
-
-    jacoco {
-        toolVersion = "0.8.11"
-    }
-
-    val jacocoTestReport by tasks.getting(JacocoReport::class) {
-        reports {
-            xml.required.set(true)
-            html.required.set(true)
-        }
     }
 }
