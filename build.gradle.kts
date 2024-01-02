@@ -16,24 +16,7 @@ allprojects {
 dependencies {
     implementation(project(":aws-lambda-kotlin-events"))
     testImplementation(kotlin("test"))
-
     kover(project(":aws-lambda-kotlin-events"))
-}
-
-koverReport {
-    filters {
-        includes {
-            classes("dev.jtkt.*")
-        }
-    }
-
-    verify {
-        rule {
-            bound {
-                minValue = 4
-            }
-        }
-    }
 }
 
 subprojects {
@@ -55,5 +38,21 @@ subprojects {
 
     kotlin {
         jvmToolchain(17)
+    }
+}
+
+koverReport {
+    filters {
+        includes {
+            classes("dev.jtkt.*")
+        }
+    }
+
+    verify {
+        rule {
+            bound {
+                minValue = 4
+            }
+        }
     }
 }
