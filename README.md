@@ -1,6 +1,6 @@
 # aws-lambda-kotlin-libs
 
-![build](https://github.com/jtaub/aws-lambda-kotlin-libs/actions/workflows/gradle.yml/badge.svg)](https://github.com/jtaub/aws-lambda-kotlin-libs/actions/workflows/gradle.yml)
+![build](https://github.com/jtaub/aws-lambda-kotlin-libs/actions/workflows/gradle.yml/badge.svg)
 ![coverage badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/jtaub/f4044a9f11949f81f5c10909a0980cb2/raw/aws-lambda-kotlin-libs-coverage-badge.json)
 
 An unofficial, work in progress to bring first-class Kotlin support to AWS Lambda (without baggage from Java).
