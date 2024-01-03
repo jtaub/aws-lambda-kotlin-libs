@@ -45,7 +45,7 @@ jobs:
       with:
         auth: ${{secrets.GIST_SECRET}}
         gistID: f4044a9f11949f81f5c10909a0980cb2
-        filename: aws-kotlin-lambda-libs-coverage-badge.json
+        filename: aws-lambda-kotlin-libs-coverage-badge.json
         label: coverage
         message: ${{env.COVERAGE}}%
         valColorRange: ${{env.COVERAGE}}
