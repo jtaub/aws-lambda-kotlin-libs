@@ -1,5 +1,7 @@
 # aws-lambda-kotlin-libs
 
+![coverage badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/jtaub/f4044a9f11949f81f5c10909a0980cb2/raw/aws-lambda-kotlib-libs-coverage-badge.json)
+
 An unofficial, work in progress to bring first-class Kotlin support to AWS Lambda (without baggage from Java).
 
 This project aims to provide feature parity with AWS's own

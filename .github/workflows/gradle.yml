@@ -36,14 +36,21 @@ jobs:
       with:
         arguments: build
 
+      # Thanks to https://bitspittle.dev/blog/2022/koverbadge
     - name: Generate Kover Report
-      run: ./gradlew koverXmlReport
+      run: echo "COVERAGE=$(./gradlew -q printLineCoverage)" >> $GITHUB_ENV
 
-    - name: Upload Kover Report
-      uses: actions/upload-artifact@v3
+    - name: Update dynamic badge gist
+      uses: schneegans/dynamic-badges-action@v1.5.0
       with:
-        name: kover-report
-        path: build/reports/kover/report.xml
+        auth: ${{secrets.GIST_SECRET}}
+        gistID: f4044a9f11949f81f5c10909a0980cb2
+        filename: aws-kotlin-lambda-libs-coverage-badge.json
+        label: coverage
+        message: ${{env.COVERAGE}}%
+        valColorRange: ${{env.COVERAGE}}
+        minColorRange: 0
+        maxColorRange: 100
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
