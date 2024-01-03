@@ -4,8 +4,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-@JvmInline
-value class BatchItemFailure(
+data class BatchItemFailure(
     val itemIdentifier: String = "",
 )
 
@@ -14,8 +13,7 @@ interface BatchItemFailures {
 }
 
 @Serializable
-@JvmInline
-value class StreamsEventResponse(
+data class StreamsEventResponse(
     override val batchItemFailures: List<BatchItemFailure> = listOf(),
 ) : BatchItemFailures
 

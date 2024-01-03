@@ -16,6 +16,5 @@ data class KinesisAnalyticsOutputDeliveryEvent(
     )
 
     @Serializable
-    @JvmInline
-    value class LambdaDeliveryRecordMetadata(val retryHint: Long = 0)
+    data class LambdaDeliveryRecordMetadata(val retryHint: Long = 0)
 }

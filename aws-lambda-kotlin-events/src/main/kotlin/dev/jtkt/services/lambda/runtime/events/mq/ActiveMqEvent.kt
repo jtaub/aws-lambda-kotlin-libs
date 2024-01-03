@@ -27,9 +27,8 @@ data class ActiveMqEvent(
         val type: String = "",
     )
 
-    @JvmInline
     @Serializable
-    value class Destination(
+    data class Destination(
         val physicalName: String = "",
     )
 }

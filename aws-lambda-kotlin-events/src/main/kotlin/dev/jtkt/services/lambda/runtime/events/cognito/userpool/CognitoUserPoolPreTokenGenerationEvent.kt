@@ -28,8 +28,7 @@ data class CognitoUserPoolPreTokenGenerationEvent(
     )
 
     @Serializable
-    @JvmInline
-    value class Response(
+    data class Response(
         val claimsOverrideDetails: ClaimsOverrideDetails = ClaimsOverrideDetails(),
     )
 

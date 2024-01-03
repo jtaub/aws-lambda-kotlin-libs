@@ -1,7 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.http
 
 import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
-import kotlinx.datetime.Instant
 import kotlinx.serialization.json.Json
 import kotlin.test.Test
 import kotlin.test.assertEquals

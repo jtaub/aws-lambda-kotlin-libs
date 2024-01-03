@@ -6,15 +6,13 @@ import java.net.URLDecoder
 
 typealias S3Event = S3EventNotification
 
-@JvmInline
 @Serializable
-value class S3EventNotification(
+data class S3EventNotification(
     val records: List<S3EventNotificationRecord> = emptyList(),
 )
 
-@JvmInline
 @Serializable
-value class UserIdentityEntity(
+data class UserIdentityEntity(
     val principalId: String,
 )
 
@@ -44,9 +42,8 @@ data class S3Entity(
     val s3SchemaVersion: String,
 )
 
-@JvmInline
 @Serializable
-value class RequestParametersEntity(
+data class RequestParametersEntity(
     val sourceIPAddress: String,
 )
 

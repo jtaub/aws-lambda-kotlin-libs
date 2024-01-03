@@ -20,9 +20,8 @@ data class KinesisTimeWindowEvent(
     val window: TimeWindow = TimeWindow(),
 ) : KinesisEventRecords
 
-@JvmInline
 @Serializable
-value class KinesisEvent(
+data class KinesisEvent(
     override val records: List<KinesisEventRecord> = emptyList(),
 ) : KinesisEventRecords
 

@@ -10,8 +10,7 @@ interface DynamoDbRecords {
  * Represents an Amazon DynamoDB event
  */
 @Serializable
-@JvmInline
-value class DynamoDbEvent(
+data class DynamoDbEvent(
     override val records: List<DynamoDbStreamRecord> = emptyList(),
 ) : DynamoDbRecords
 

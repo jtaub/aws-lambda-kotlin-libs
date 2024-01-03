@@ -18,9 +18,8 @@ data class KinesisAnalyticsFirehoseInputPreprocessingEvent(
         val data: ByteArray = ByteArray(0),
     )
 
-    @JvmInline
     @Serializable
-    value class KinesisFirehoseRecordMetadata(
+    data class KinesisFirehoseRecordMetadata(
         val approximateArrivalTimestamp: Instant = Clock.System.now(),
     )
 }

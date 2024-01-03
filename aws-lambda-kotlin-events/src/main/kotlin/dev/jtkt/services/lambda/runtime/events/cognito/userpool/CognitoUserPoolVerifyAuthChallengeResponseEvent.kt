@@ -23,8 +23,7 @@ data class CognitoUserPoolVerifyAuthChallengeResponseEvent(
     ) : CognitoUserPoolEvent.Request
 
     @Serializable
-    @JvmInline
-    value class Response(
+    data class Response(
         val answerCorrect: Boolean = false,
     )
 }

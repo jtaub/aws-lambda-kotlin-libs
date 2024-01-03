@@ -2,9 +2,8 @@ package dev.jtkt.services.lambda.runtime.events.kinesis.analytics
 
 import kotlinx.serialization.Serializable
 
-@JvmInline
 @Serializable
-value class KinesisAnalyticsOutputDeliveryResponse(
+data class KinesisAnalyticsOutputDeliveryResponse(
     val records: List<Record> = emptyList(),
 ) {
     @Serializable

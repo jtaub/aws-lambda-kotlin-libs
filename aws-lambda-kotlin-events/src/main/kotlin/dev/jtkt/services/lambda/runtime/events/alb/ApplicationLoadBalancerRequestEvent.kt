@@ -15,10 +15,8 @@ data class ApplicationLoadBalancerRequestEvent(
     val isBase64Encoded: Boolean = false,
 ) {
     @Serializable
-    @JvmInline
-    value class Elb(val targetGroupArn: String = "")
+    data class Elb(val targetGroupArn: String = "")
 
-    @JvmInline
     @Serializable
-    value class RequestContext(val elb: Elb = Elb())
+    data class RequestContext(val elb: Elb = Elb())
 }

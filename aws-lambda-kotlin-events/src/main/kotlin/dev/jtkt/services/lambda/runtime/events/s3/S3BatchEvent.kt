@@ -9,9 +9,8 @@ data class S3BatchEvent(
     val job: Job = Job(),
     val tasks: List<Task> = emptyList(),
 ) {
-    @JvmInline
     @Serializable
-    value class Job(
+    data class Job(
         val id: String = "",
     )
 

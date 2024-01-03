@@ -5,8 +5,7 @@ import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable
-@JvmInline
-value class CodeCommitEvent(
+data class CodeCommitEvent(
     val records: List<Record> = emptyList(),
 ) {
     @Serializable
@@ -27,9 +26,8 @@ value class CodeCommitEvent(
         val eventTotalParts: Int = 0,
     )
 
-    @JvmInline
     @Serializable
-    value class CodeCommit(val references: List<Reference> = emptyList())
+    data class CodeCommit(val references: List<Reference> = emptyList())
 
     @Serializable
     data class Reference(
