@@ -37,7 +37,7 @@ jobs:
         arguments: build
 
     - name: Generate Kover Report
-      run: ./gradlw koverXmlReport
+      run: ./gradlew koverXmlReport
 
     - name: Upload Kover Report
       uses: actions/upload-artifact@v3
