@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events.kinesis
+package dev.jtkt.services.lambda.runtime.events.kinesis.streams
 
 import kotlinx.serialization.Serializable
 

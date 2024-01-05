@@ -5,5 +5,8 @@ import kotlinx.datetime.Clock
 internal object TimeUtils {
 
     fun nowEpochMillis(): Long =
-        Clock.System.now().toEpochMilliseconds()
+        now().toEpochMilliseconds()
+
+    fun now() =
+        Clock.System.now()
 }
