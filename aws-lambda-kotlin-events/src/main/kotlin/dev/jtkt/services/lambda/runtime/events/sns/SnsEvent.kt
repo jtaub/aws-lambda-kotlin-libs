@@ -11,9 +11,9 @@ data class SnsEvent(
 
     @Serializable
     data class SnsRecord(
-        val eventSource: String = "",
+        val eventSource: String = "aws:sns",
         val eventSubscriptionArn: String = "",
-        val eventVersion: String = "",
+        val eventVersion: String = "1.0",
         val sns: Sns = Sns(),
     )
 
@@ -23,7 +23,7 @@ data class SnsEvent(
         val messageAttributes: Map<String, MessageAttribute> = emptyMap(),
         val messageId: String = "",
         val signature: String = "",
-        val signatureVersion: String = "",
+        val signatureVersion: String = "1",
         val signingCertUrl: String = "",
         val subject: String = "",
         val timestamp: Instant = Clock.System.now(),
