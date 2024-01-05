@@ -63,12 +63,12 @@ class SnsEventTest {
                         message = "Hello from SNS!",
                         messageAttributes = mapOf(
                             "Test" to SnsEvent.MessageAttribute("String", "TestString"),
-                            "TestBinary" to SnsEvent.MessageAttribute("Binary", "TestBinary")
+                            "TestBinary" to SnsEvent.MessageAttribute("Binary", "TestBinary"),
                         ),
                         type = "Notification",
                         unsubscribeUrl = "https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&amp;SubscriptionArn=arn:aws:sns:us-east-1:123456789012:test-lambda:21be56ed-a058-49f5-8c98-aedd2564c486",
                         topicArn = "arn:aws:sns:us-east-1:123456789012:sns-lambda",
-                        subject = "TestInvoke"
+                        subject = "TestInvoke",
                     )
                 )
             )

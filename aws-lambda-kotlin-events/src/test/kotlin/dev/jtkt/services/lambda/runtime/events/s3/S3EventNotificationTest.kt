@@ -63,11 +63,11 @@ class S3EventNotificationTest {
                     eventTime = Instant.parse("1970-01-01T00:00:00.000Z"),
                     eventVersion = "2.0",
                     requestParameters = RequestParametersEntity(
-                        sourceIpAddress = "127.0.0.1"
+                        sourceIpAddress = "127.0.0.1",
                     ),
                     responseElements = ResponseElementsEntity(
                         xAmzId2 = "EXAMPLE123/5678abcdefghijklambdaisawesome/mnopqrstuvwxyzABCDEFGH",
-                        xAmzRequestId = "EXAMPLE123456789"
+                        xAmzRequestId = "EXAMPLE123456789",
                     ),
                     s3 = S3Entity(
                         configurationId = "testConfigRule",
@@ -75,19 +75,19 @@ class S3EventNotificationTest {
                             arn = "arn:aws:s3:::my-bucket",
                             name = "my-bucket",
                             ownerIdentity = UserIdentityEntity(
-                                principalId = "EXAMPLE"
+                                principalId = "EXAMPLE",
                             )
                         ),
                         s3Object = S3ObjectEntity(
                             key = "test%2Fkey",
                             size = 1024,
                             eTag = "0123456789abcdef0123456789abcdef",
-                            sequencer = "0A1B2C3D4E5F678901"
+                            sequencer = "0A1B2C3D4E5F678901",
                         ),
                         s3SchemaVersion = "1.0",
                     ),
                     userIdentity = UserIdentityEntity(
-                        principalId = "EXAMPLE"
+                        principalId = "EXAMPLE",
                     )
                 )
             )

@@ -60,7 +60,7 @@ class SqsEventTest {
                         "ApproximateReceiveCount" to "1",
                         "SentTimestamp" to "1545082649183",
                         "SenderId" to "AIDAIENQZJOLO23YVJ4VO",
-                        "ApproximateFirstReceiveTimestamp" to "1545082649185"
+                        "ApproximateFirstReceiveTimestamp" to "1545082649185",
                     ),
                     awsRegion = "us-east-2",
                     body = "Test message.",
@@ -69,14 +69,14 @@ class SqsEventTest {
                     md5OfBody = "e4e68fb7bd0e697a0ae8f1bb342846b3",
                     messageAttributes = emptyMap(),
                     messageId = "059f36b4-87a3-44ab-83d2-661975830a7d",
-                    receiptHandle = "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a..."
+                    receiptHandle = "AQEBwJnKyrHigUMZj6rYigCgxlaS3SLy0a...",
                 ),
                 SqsMessage(
                     attributes = mapOf(
                         "ApproximateReceiveCount" to "1",
                         "SentTimestamp" to "1545082650636",
                         "SenderId" to "AIDAIENQZJOLO23YVJ4VO",
-                        "ApproximateFirstReceiveTimestamp" to "1545082650649"
+                        "ApproximateFirstReceiveTimestamp" to "1545082650649",
                     ),
                     awsRegion = "us-east-2",
                     body = "Test message.",
@@ -85,7 +85,7 @@ class SqsEventTest {
                     md5OfBody = "e4e68fb7bd0e697a0ae8f1bb342846b3",
                     messageAttributes = emptyMap(),
                     messageId = "2e1424d4-f796-459a-8184-9c92662be6da",
-                    receiptHandle = "AQEBzWwaftRI0KuVm4tP+/7q1rGgNqicHq..."
+                    receiptHandle = "AQEBzWwaftRI0KuVm4tP+/7q1rGgNqicHq...",
                 )
             )
         )
