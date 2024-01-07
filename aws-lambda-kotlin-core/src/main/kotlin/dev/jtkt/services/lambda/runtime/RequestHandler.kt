@@ -7,13 +7,13 @@ import kotlinx.serialization.json.encodeToStream
 import java.io.InputStream
 import java.io.OutputStream
 
-typealias LambdaHandler<IN, OUT> = (IN, Context?) -> OUT
+typealias RequestHandler<IN, OUT> = (IN, Context?) -> OUT
 typealias RequestStreamHandler = (InputStream, OutputStream, Context?) -> Unit
 
 @ExperimentalSerializationApi
 inline fun <reified IN, reified OUT> RequestHandler(
     json: Json = Json,
-    crossinline handler: LambdaHandler<IN, OUT>,
+    crossinline handler: RequestHandler<IN, OUT>,
 ): RequestStreamHandler {
     return { inputStream: InputStream, outputStream: OutputStream, context: Context? ->
         val request = json.decodeFromStream<IN>(inputStream)

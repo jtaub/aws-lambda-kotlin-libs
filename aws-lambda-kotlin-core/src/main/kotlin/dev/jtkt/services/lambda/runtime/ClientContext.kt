@@ -7,9 +7,9 @@ interface ClientContext {
 }
 
 interface Client {
-    val installationId: String
-    val appTitle: String
-    val appVersionName: String
-    val appVersionCode: String
     val appPackageName: String
+    val appTitle: String
+    val appVersionCode: String
+    val appVersionName: String
+    val installationId: String
 }
