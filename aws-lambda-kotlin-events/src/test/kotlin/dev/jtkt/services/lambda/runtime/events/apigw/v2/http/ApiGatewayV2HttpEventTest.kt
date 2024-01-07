@@ -1,13 +1,14 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.http
 
+import dev.jtkt.services.lambda.runtime.events.TestUtils.decodeFromOutputStream
 import dev.jtkt.services.lambda.runtime.newLambdaHandler
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromStream
 import java.io.ByteArrayOutputStream
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-
+@ExperimentalSerializationApi
 class ApiGatewayV2HttpEventTest {
 
     private val candidate = newLambdaHandler { event: ApiGatewayV2HttpEvent, _ ->
@@ -95,7 +96,7 @@ class ApiGatewayV2HttpEventTest {
         candidate(input.byteInputStream(), outputStream, null)
 
         // Then
-        val actual = Json.decodeFromString<ApiGatewayV2HttpResponse>(outputStream.toString(Charsets.UTF_8))
+        val actual = Json.decodeFromOutputStream<ApiGatewayV2HttpResponse>(outputStream)
         val expected = ApiGatewayV2HttpResponse(body = "Hello, World!")
 
         assertEquals(expected, actual)

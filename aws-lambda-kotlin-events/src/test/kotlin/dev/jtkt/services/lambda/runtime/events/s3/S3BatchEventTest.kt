@@ -1,5 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.s3
 
+import dev.jtkt.services.lambda.runtime.events.TestUtils.decodeFromOutputStream
 import dev.jtkt.services.lambda.runtime.newLambdaHandler
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -49,7 +50,7 @@ class S3BatchEventTest {
         candidate(input.byteInputStream(), outputStream, null)
 
         // Then
-        val actual = Json.decodeFromString<S3BatchResponse>(outputStream.toString(Charsets.UTF_8))
+        val actual = Json.decodeFromOutputStream<S3BatchResponse>(outputStream)
         val expected = S3BatchResponse(
             invocationSchemaVersion = "1.0",
             invocationId = "YXNkbGZqYWRmaiBhc2RmdW9hZHNmZGpmaGFzbGtkaGZza2RmaAo",

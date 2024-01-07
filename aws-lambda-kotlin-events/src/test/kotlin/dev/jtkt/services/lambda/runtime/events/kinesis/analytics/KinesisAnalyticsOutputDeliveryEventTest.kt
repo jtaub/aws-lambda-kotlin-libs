@@ -1,13 +1,15 @@
 package dev.jtkt.services.lambda.runtime.events.kinesis.analytics
 
-import dev.jtkt.services.lambda.runtime.lambdaJsonSerializationDefaults
+import dev.jtkt.services.lambda.runtime.events.TestUtils.decodeFromOutputStream
 import dev.jtkt.services.lambda.runtime.newLambdaHandler
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import java.io.ByteArrayOutputStream
 import kotlin.test.Test
 
+@ExperimentalSerializationApi
 class KinesisAnalyticsOutputDeliveryEventTest {
 
     private val candidate = newLambdaHandler { event: KinesisAnalyticsOutputDeliveryEvent, _ ->
@@ -36,8 +38,7 @@ class KinesisAnalyticsOutputDeliveryEventTest {
         candidate(input.byteInputStream(), outputStream, null)
 
         // Then
-        val actual =
-            Json.decodeFromString<KinesisAnalyticsOutputDeliveryResponse>(outputStream.toString(Charsets.UTF_8))
+        val actual = Json.decodeFromOutputStream<KinesisAnalyticsOutputDeliveryResponse>(outputStream)
         val expected = KinesisAnalyticsOutputDeliveryResponse(
             records = listOf(KinesisAnalyticsOutputDeliveryResponse.Record(recordId = "42"))
         )
