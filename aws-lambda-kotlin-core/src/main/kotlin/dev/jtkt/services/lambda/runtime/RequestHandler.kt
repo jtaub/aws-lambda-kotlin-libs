@@ -11,7 +11,7 @@ typealias RequestHandler<IN, OUT> = (IN, Context?) -> OUT
 typealias RequestStreamHandler = (InputStream, OutputStream, Context?) -> Unit
 
 @ExperimentalSerializationApi
-inline fun <reified IN, reified OUT> RequestHandler(
+inline fun <reified IN, reified OUT> newLambdaHandler(
     json: Json = Json,
     crossinline handler: RequestHandler<IN, OUT>,
 ): RequestStreamHandler {
