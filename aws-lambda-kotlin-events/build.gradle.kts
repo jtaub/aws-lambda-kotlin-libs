@@ -4,4 +4,5 @@ tasks.withType<Wrapper> {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+    implementation(project(":aws-lambda-kotlin-core"))
 }

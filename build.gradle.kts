@@ -16,8 +16,8 @@ allprojects {
 }
 
 dependencies {
-    implementation(project(":aws-lambda-kotlin-events"))
     testImplementation(kotlin("test"))
+    kover(project(":aws-lambda-kotlin-core"))
     kover(project(":aws-lambda-kotlin-events"))
 }
 
@@ -30,7 +30,6 @@ subprojects {
 
     dependencies {
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-        implementation("com.amazonaws:aws-lambda-java-core:1.2.3")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     }
 

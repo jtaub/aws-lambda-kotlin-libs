@@ -4,3 +4,4 @@ plugins {
 rootProject.name = "aws-lambda-kotlin-libs"
 
 include("aws-lambda-kotlin-events")
+include("aws-lambda-kotlin-core")

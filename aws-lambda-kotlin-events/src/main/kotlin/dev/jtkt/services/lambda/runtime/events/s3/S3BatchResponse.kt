@@ -25,7 +25,7 @@ data class S3BatchResponse(
     companion object {
         fun fromS3BatchEvent(s3BatchEvent: S3BatchEvent) = S3BatchResponse(
             invocationSchemaVersion = s3BatchEvent.invocationSchemaVersion,
-            invocationId = s3BatchEvent.invocationId
+            invocationId = s3BatchEvent.invocationId,
         )
     }
 }

@@ -8,6 +8,7 @@ import kotlinx.serialization.json.decodeFromStream
 import kotlinx.serialization.json.encodeToStream
 import java.io.InputStream
 import java.io.OutputStream
+import kotlin.reflect.KClass
 
 @ExperimentalSerializationApi
 fun interface S3BatchHandler : RequestStreamHandler {
@@ -22,4 +23,12 @@ fun interface S3BatchHandler : RequestStreamHandler {
     }
 
     fun handleRequest(event: S3BatchEvent, context: Context?): S3BatchResponse
+}
+
+
+fun s3BatchHandler(
+    input: InputStream,
+    output: OutputStream,
+) = handleRequest(input, output) { request: S3BatchEvent, context: Context? ->
+    S3BatchResponse()
 }
