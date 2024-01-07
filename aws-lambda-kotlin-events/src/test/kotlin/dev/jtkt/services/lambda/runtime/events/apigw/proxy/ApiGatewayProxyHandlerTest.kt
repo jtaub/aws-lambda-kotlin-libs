@@ -1,5 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.proxy
 
+import dev.jtkt.services.lambda.runtime.newLambdaHandler
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -10,7 +11,7 @@ import kotlin.test.assertEquals
 @ExperimentalSerializationApi
 class ApiGatewayProxyHandlerTest {
 
-    private val candidate = ApiGatewayProxyHandler { event, _ ->
+    private val candidate = newLambdaHandler<ApiGatewayProxyRequestEvent, ApiGatewayProxyResponseEvent> { event, _ ->
         ApiGatewayProxyResponseEvent(body = """{"msg": "Hello, ${event.body}!"}""")
     }
 
@@ -22,7 +23,7 @@ class ApiGatewayProxyHandlerTest {
         // When
         val inputStream = Json.encodeToString(input).byteInputStream()
         val outputStream = ByteArrayOutputStream()
-        candidate.handleRequest(inputStream, outputStream, null)
+        candidate(inputStream, outputStream, null)
 
         // Then
         val actual = Json.decodeFromString<ApiGatewayProxyResponseEvent>(outputStream.toString(Charsets.UTF_8))
