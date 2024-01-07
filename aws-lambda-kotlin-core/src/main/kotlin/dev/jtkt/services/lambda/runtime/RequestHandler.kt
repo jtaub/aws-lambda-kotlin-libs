@@ -10,9 +10,17 @@ import java.io.OutputStream
 typealias RequestHandler<IN, OUT> = (IN, Context?) -> OUT
 typealias RequestStreamHandler = (InputStream, OutputStream, Context?) -> Unit
 
+val lambdaJsonSerializationDefaults = Json {
+    coerceInputValues = true
+    encodeDefaults = true
+    explicitNulls = true
+    ignoreUnknownKeys = true
+    useAlternativeNames = false
+}
+
 @ExperimentalSerializationApi
 inline fun <reified IN, reified OUT> newLambdaHandler(
-    json: Json = Json,
+    json: Json = lambdaJsonSerializationDefaults,
     crossinline handler: RequestHandler<IN, OUT>,
 ): RequestStreamHandler {
     return { inputStream: InputStream, outputStream: OutputStream, context: Context? ->

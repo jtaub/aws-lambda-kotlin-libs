@@ -1,22 +1,24 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.http
 
-import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
+import dev.jtkt.services.lambda.runtime.newLambdaHandler
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromStream
+import java.io.ByteArrayOutputStream
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 
 class ApiGatewayV2HttpEventTest {
 
-    private val serializer = Json {
-        ignoreUnknownKeys = true
+    private val candidate = newLambdaHandler<ApiGatewayV2HttpEvent, ApiGatewayV2HttpResponse> { event, _ ->
+        ApiGatewayV2HttpResponse(body = "Hello, ${event.body}!")
     }
 
     @Test
     fun deserialize() {
         // Given
         val default = "foo"
-        val json = """
+        val input = """
             {
               "version": "2.0",
               "routeKey": "$default",
@@ -76,7 +78,7 @@ class ApiGatewayV2HttpEventTest {
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
               },
-              "body": "Hello from Lambda",
+              "body": "World",
               "pathParameters": {
                 "parameter1": "value1"
               },
@@ -89,57 +91,12 @@ class ApiGatewayV2HttpEventTest {
         """.trimIndent()
 
         // When
-        val actual = serializer.decodeFromString<ApiGatewayV2HttpEvent>(json)
+        val outputStream = ByteArrayOutputStream()
+        candidate(input.byteInputStream(), outputStream, null)
 
         // Then
-        val expected = ApiGatewayV2HttpEvent(
-            version = "2.0",
-            routeKey = default,
-            rawPath = "/my/path",
-            rawQueryString = "parameter1=value1&parameter1=value2&parameter2=value",
-            cookies = listOf("cookie1", "cookie2"),
-            headers = mapOf("header1" to "value1", "header2" to "value1,value2"),
-            queryStringParameters = mapOf("parameter1" to "value1,value2", "parameter2" to "value"),
-            requestContext = HttpRequestContext(
-                accountId = "123456789012",
-                apiId = "api-id",
-//                authentication = Authentication(
-//                    clientCert = ClientCert(
-//                        clientCertPem = "CERT_CONTENT",
-//                        subjectDN = "www.example.com",
-//                        issuerDN = "Example issuer",
-//                        serialNumber = "a1:a1:a1:a1:a1:a1:a1:a1:a1:a1:a1:a1:a1:a1:a1:a1",
-//                        validity = Validity(
-//                            notBefore = "May 28 12:30:02 2019 GMT",
-//                            notAfter = "Aug  5 09:36:04 2021 GMT"
-//                        )
-//                    )
-//                ),
-//                authorizer = Authorizer(
-//                    jwt = Jwt(
-//                        claims = mapOf("claim1" to "value1", "claim2" to "value2"),
-//                        scopes = listOf("scope1", "scope2")
-//                    )
-//                ),
-                domainName = "id.execute-api.us-east-1.amazonaws.com",
-                domainPrefix = "id",
-                http = Http(
-                    method = HttpMethod.POST,
-                    path = "/my/path",
-                    protocol = "HTTP/1.1",
-                    sourceIp = "192.0.2.1",
-                    userAgent = "agent"
-                ),
-                requestId = "id",
-                routeKey = default,
-                stage = default,
-                timeEpoch = 1583348638390L,
-            ),
-            body = "Hello from Lambda",
-            pathParameters = mapOf("parameter1" to "value1"),
-            isBase64Encoded = false,
-            stageVariables = mapOf("stageVariable1" to "value1", "stageVariable2" to "value2")
-        )
+        val actual = Json.decodeFromString<ApiGatewayV2HttpResponse>(outputStream.toString(Charsets.UTF_8))
+        val expected = ApiGatewayV2HttpResponse(body = "Hello, World!")
 
         assertEquals(expected, actual)
     }

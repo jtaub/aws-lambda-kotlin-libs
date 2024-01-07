@@ -1,12 +1,11 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.websocket
 
+import dev.jtkt.services.lambda.runtime.CognitoIdentity
 import dev.jtkt.services.lambda.runtime.events.TimeUtils.nowEpochMillis
 import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
 import dev.jtkt.services.lambda.runtime.events.apigw.auth.Authorizer
-import dev.jtkt.services.lambda.runtime.events.apigw.proxy.RequestIdentity
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.ApiGatewayV2Event
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.RequestContext
-import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -18,8 +17,6 @@ data class ApiGatewayV2WebSocketEvent(
     override val isBase64Encoded: Boolean = false,
     override val requestContext: WebSocketRequestContext = WebSocketRequestContext(httpMethod = httpMethod),
     override val stageVariables: Map<String, String> = emptyMap(),
-    val multiValueHeaders: Map<String, List<String>> = emptyMap(),
-    val multiValueQueryStringParameters: Map<String, List<String>> = emptyMap(),
     val path: String = "/",
     val pathParameters: Map<String, String> = emptyMap(),
     val queryStringParameters: Map<String, String> = emptyMap(),
@@ -53,4 +50,24 @@ data class ApiGatewayV2WebSocketEvent(
 
         val requestTime: Instant = Instant.fromEpochMilliseconds(requestTimeEpoch)
     }
+}
+
+@Serializable
+data class RequestIdentity(
+    val accessKey: String = "",
+    val accountId: String = "",
+    val apiKey: String = "",
+    val caller: String = "",
+    val cognitoAuthenticationProvider: String = "",
+    val cognitoAuthenticationType: String = "",
+    val cognitoIdentityId: String = "",
+    val cognitoIdentityPoolId: String = "",
+    val principalOrgId: String = "",
+    val sourceIp: String = "",
+    val user: String = "",
+    val userAgent: String = "",
+    val userArn: String = "",
+) : CognitoIdentity {
+    override val identityId = cognitoIdentityId
+    override val identityPoolId = cognitoIdentityPoolId
 }

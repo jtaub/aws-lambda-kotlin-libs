@@ -1,17 +1,10 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.http
 
+import dev.jtkt.services.lambda.runtime.events.TimeUtils
 import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.ApiGatewayV2Event
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.RequestContext
-import kotlinx.datetime.Instant
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Serializer
-import kotlinx.serialization.descriptors.PrimitiveKind
-import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
-import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
 
 @Serializable
 data class ApiGatewayV2HttpEvent(
@@ -29,3 +22,25 @@ data class ApiGatewayV2HttpEvent(
     val routeKey: String = "",
     val version: String = "2.0",
 ) : ApiGatewayV2Event
+
+@Serializable
+data class HttpRequestContext(
+    override val accountId: String = "",
+    override val apiId: String = "",
+    override val domainName: String = "",
+    override val requestId: String = "",
+    override val routeKey: String = "",
+    override val stage: String = "",
+    override val timeEpoch: Long = TimeUtils.nowEpochMillis(),
+    val domainPrefix: String = "",
+    val http: Http = Http(),
+) : RequestContext
+
+@Serializable
+data class Http(
+    val method: HttpMethod = HttpMethod.GET,
+    val path: String = "/",
+    val protocol: String = "",
+    val sourceIp: String = "",
+    val userAgent: String = "",
+)
