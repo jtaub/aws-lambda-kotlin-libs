@@ -1,6 +1,6 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2
 
-import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
+import dev.jtkt.services.lambda.runtime.events.HttpMethod
 import kotlinx.datetime.Instant
 
 /**

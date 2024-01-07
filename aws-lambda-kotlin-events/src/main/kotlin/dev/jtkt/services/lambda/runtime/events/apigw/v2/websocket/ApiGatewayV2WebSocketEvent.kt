@@ -2,7 +2,7 @@ package dev.jtkt.services.lambda.runtime.events.apigw.v2.websocket
 
 import dev.jtkt.services.lambda.runtime.CognitoIdentity
 import dev.jtkt.services.lambda.runtime.events.TimeUtils.nowEpochMillis
-import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
+import dev.jtkt.services.lambda.runtime.events.HttpMethod
 import dev.jtkt.services.lambda.runtime.events.apigw.auth.Authorizer
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.ApiGatewayV2Event
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.RequestContext

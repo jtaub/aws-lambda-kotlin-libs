@@ -1,7 +1,7 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.http
 
 import dev.jtkt.services.lambda.runtime.events.TimeUtils
-import dev.jtkt.services.lambda.runtime.events.apigw.HttpMethod
+import dev.jtkt.services.lambda.runtime.events.HttpMethod
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.ApiGatewayV2Event
 import dev.jtkt.services.lambda.runtime.events.apigw.v2.RequestContext
 import kotlinx.serialization.Serializable

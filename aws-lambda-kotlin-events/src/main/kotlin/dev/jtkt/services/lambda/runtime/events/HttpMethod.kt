@@ -1,4 +1,4 @@
-package dev.jtkt.services.lambda.runtime.events.apigw
+package dev.jtkt.services.lambda.runtime.events
 
 import kotlinx.serialization.Serializable
 
