@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 
 class ApiGatewayV2HttpEventTest {
 
-    private val candidate = newLambdaHandler<ApiGatewayV2HttpEvent, ApiGatewayV2HttpResponse> { event, _ ->
+    private val candidate = newLambdaHandler { event: ApiGatewayV2HttpEvent, _ ->
         ApiGatewayV2HttpResponse(body = "Hello, ${event.body}!")
     }
 
