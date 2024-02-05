@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 @ExperimentalSerializationApi
 class ApiGatewayV2HttpEventTest {
 
-    private val candidate = newLambdaHandler { event: ApiGatewayV2HttpEvent, _ ->
+    private val candidate = newLambdaHandler { event: ApiGatewayV2HttpEvent ->
         ApiGatewayV2HttpResponse(body = "Hello, ${event.body}!")
     }
 
@@ -93,7 +93,7 @@ class ApiGatewayV2HttpEventTest {
 
         // When
         val outputStream = ByteArrayOutputStream()
-        candidate(input.byteInputStream(), outputStream, null)
+        candidate.handleRequest(input.byteInputStream(), outputStream)
 
         // Then
         val actual = Json.decodeFromOutputStream<ApiGatewayV2HttpResponse>(outputStream)

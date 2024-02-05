@@ -12,7 +12,7 @@ import kotlin.test.Test
 @ExperimentalSerializationApi
 class KinesisAnalyticsOutputDeliveryEventTest {
 
-    private val candidate = newLambdaHandler { event: KinesisAnalyticsOutputDeliveryEvent, _ ->
+    private val candidate = newLambdaHandler { event: KinesisAnalyticsOutputDeliveryEvent ->
         KinesisAnalyticsOutputDeliveryResponse(
             records = event.records.map {
                 KinesisAnalyticsOutputDeliveryResponse.Record(
@@ -21,7 +21,6 @@ class KinesisAnalyticsOutputDeliveryEventTest {
             }
         )
     }
-
 
     @Test
     fun simpleTest() {
@@ -35,7 +34,7 @@ class KinesisAnalyticsOutputDeliveryEventTest {
 
         // When
         val outputStream = ByteArrayOutputStream()
-        candidate(input.byteInputStream(), outputStream, null)
+        candidate.handleRequest(input.byteInputStream(), outputStream)
 
         // Then
         val actual = Json.decodeFromOutputStream<KinesisAnalyticsOutputDeliveryResponse>(outputStream)

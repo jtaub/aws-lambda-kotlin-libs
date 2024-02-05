@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 @ExperimentalSerializationApi
 class S3BatchEventTest {
 
-    private val candidate = newLambdaHandler<S3BatchEvent, S3BatchResponse> { event, _ ->
+    private val candidate = newLambdaHandler<S3BatchEvent, S3BatchResponse> { event ->
         S3BatchResponse(
             invocationId = event.invocationId,
             invocationSchemaVersion = event.invocationSchemaVersion,
@@ -47,7 +47,7 @@ class S3BatchEventTest {
 
         // When
         val outputStream = ByteArrayOutputStream()
-        candidate(input.byteInputStream(), outputStream, null)
+        candidate.handleRequest(input.byteInputStream(), outputStream)
 
         // Then
         val actual = Json.decodeFromOutputStream<S3BatchResponse>(outputStream)

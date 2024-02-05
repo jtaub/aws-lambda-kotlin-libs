@@ -19,14 +19,14 @@ class RequestHandlerKtTest {
         data class Output(val output: String)
 
         // and we define a handler to uppercase input,
-        val candidate = newLambdaHandler { event: Input, _ ->
+        val candidate = newLambdaHandler { event: Input ->
             Output(event.input.uppercase())
         }
 
         // When we attempt to handle an event,
         val event = """{"input":"foobar"}"""
         val outputStream = ByteArrayOutputStream()
-        candidate(event.byteInputStream(), outputStream, null)
+        candidate.handleRequest(event.byteInputStream(), outputStream)
 
         // Then the outputstream should have the correct result written to it.
         val actual = outputStream.toString(Charsets.UTF_8)

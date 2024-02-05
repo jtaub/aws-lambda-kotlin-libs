@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 
 class ApplicationLoadBalancerRequestEventTest {
 
-    private val candidate = newLambdaHandler { event: ApplicationLoadBalancerRequestEvent, _ ->
+    private val candidate = newLambdaHandler { event: ApplicationLoadBalancerRequestEvent ->
         ApplicationLoadBalancerResponseEvent(body = "Hello, ${event.body}!")
     }
 
@@ -49,7 +49,7 @@ class ApplicationLoadBalancerRequestEventTest {
 
         // When
         val outputStream = ByteArrayOutputStream()
-        candidate(input.byteInputStream(), outputStream, null)
+        candidate.handleRequest(input.byteInputStream(), outputStream)
 
         // Then
         val actual = Json.decodeFromOutputStream<ApplicationLoadBalancerResponseEvent>(outputStream)
