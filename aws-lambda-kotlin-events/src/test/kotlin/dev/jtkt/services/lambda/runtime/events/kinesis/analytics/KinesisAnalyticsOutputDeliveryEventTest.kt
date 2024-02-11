@@ -1,7 +1,7 @@
 package dev.jtkt.services.lambda.runtime.events.kinesis.analytics
 
 import dev.jtkt.services.lambda.runtime.events.TestUtils.decodeFromOutputStream
-import dev.jtkt.services.lambda.runtime.newLambdaHandler
+import dev.jtkt.services.lambda.runtime.awsLambdaFunction
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -12,7 +12,7 @@ import kotlin.test.Test
 @ExperimentalSerializationApi
 class KinesisAnalyticsOutputDeliveryEventTest {
 
-    private val candidate = newLambdaHandler { event: KinesisAnalyticsOutputDeliveryEvent ->
+    private val candidate = awsLambdaFunction { event: KinesisAnalyticsOutputDeliveryEvent ->
         KinesisAnalyticsOutputDeliveryResponse(
             records = event.records.map {
                 KinesisAnalyticsOutputDeliveryResponse.Record(

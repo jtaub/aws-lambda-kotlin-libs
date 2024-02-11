@@ -1,36 +1,32 @@
 package dev.jtkt.services.lambda.runtime
 
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
 
 /**
- * Provides a much more convenient syntax for defining and instantiating a [LambdaHandler].
- * However, this generally cannot be used with the AWS Java runtime, which expects a named class to be defined.
+ * Using the provided [handler], creates an instance of a [LambdaFunction].
+ *
+ * Important: in order for the AWS Lambda runtime to be able to find this, you must use this as a delegate in a class.
+ * For example, if you have `val handler = handlerFunction<String, Int> { it.length }`, then you need to define
+ * `class MyHandler : LambdaFunction<String, Int> by handler`
+ *
  */
-@ExperimentalSerializationApi
-inline fun <reified IN, reified OUT> newLambdaHandler(
-    inputFormat: Json = LambdaHandler.jsonFormatDefaults,
-    outputFormat: Json = LambdaHandler.jsonFormatDefaults,
+inline fun <reified IN, reified OUT> awsLambdaFunction(
     crossinline handler: (IN) -> OUT,
-): LambdaHandler<IN, OUT> {
+): LambdaFunction<IN, OUT> {
 
-    return object : LambdaHandler<IN, OUT> {
+    return object : KotlinxStreamProcessor<IN, OUT> {
         override val inputDeserializer = serializer<IN>()
-        override val inputFormat = inputFormat
-        override val outputFormat = outputFormat
         override val outputSerializer = serializer<OUT>()
         override fun process(event: IN) = handler(event)
     }
 }
 
 /**
- * Allows for creating a new [LambdaHandler] by chaining together two existing ones.
+ * Allows for creating a new [LambdaFunction] by chaining together two existing ones.
  */
-@ExperimentalSerializationApi
-inline operator fun <reified IN, reified OUT1, reified OUT2> LambdaHandler<IN, OUT1>.plus(
-    other: LambdaHandler<OUT1, OUT2>,
+inline operator fun <reified IN, reified OUT1, reified OUT2> LambdaFunction<IN, OUT1>.plus(
+    other: LambdaFunction<OUT1, OUT2>,
 ) =
-    newLambdaHandler { event: IN ->
+    awsLambdaFunction { event: IN ->
         other.process(this.process(event))
     }

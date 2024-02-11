@@ -1,7 +1,7 @@
 package dev.jtkt.services.lambda.runtime.events.s3
 
 import dev.jtkt.services.lambda.runtime.events.TestUtils.decodeFromOutputStream
-import dev.jtkt.services.lambda.runtime.newLambdaHandler
+import dev.jtkt.services.lambda.runtime.awsLambdaFunction
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import java.io.ByteArrayOutputStream
@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 @ExperimentalSerializationApi
 class S3BatchEventTest {
 
-    private val candidate = newLambdaHandler<S3BatchEvent, S3BatchResponse> { event ->
+    private val candidate = awsLambdaFunction<S3BatchEvent, S3BatchResponse> { event ->
         S3BatchResponse(
             invocationId = event.invocationId,
             invocationSchemaVersion = event.invocationSchemaVersion,

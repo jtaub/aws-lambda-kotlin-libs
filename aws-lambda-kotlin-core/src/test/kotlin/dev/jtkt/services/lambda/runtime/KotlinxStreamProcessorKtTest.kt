@@ -7,7 +7,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @ExperimentalSerializationApi
-class RequestHandlerKtTest {
+class KotlinxStreamProcessorKtTest {
 
     @Test
     fun `creating a request handler`() {
@@ -19,7 +19,7 @@ class RequestHandlerKtTest {
         data class Output(val output: String)
 
         // and we define a handler to uppercase input,
-        val candidate = newLambdaHandler { event: Input ->
+        val candidate = awsLambdaFunction { event: Input ->
             Output(event.input.uppercase())
         }
 

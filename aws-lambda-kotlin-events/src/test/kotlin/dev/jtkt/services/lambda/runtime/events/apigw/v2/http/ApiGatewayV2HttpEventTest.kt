@@ -1,7 +1,7 @@
 package dev.jtkt.services.lambda.runtime.events.apigw.v2.http
 
 import dev.jtkt.services.lambda.runtime.events.TestUtils.decodeFromOutputStream
-import dev.jtkt.services.lambda.runtime.newLambdaHandler
+import dev.jtkt.services.lambda.runtime.awsLambdaFunction
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import java.io.ByteArrayOutputStream
@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 @ExperimentalSerializationApi
 class ApiGatewayV2HttpEventTest {
 
-    private val candidate = newLambdaHandler { event: ApiGatewayV2HttpEvent ->
+    private val candidate = awsLambdaFunction { event: ApiGatewayV2HttpEvent ->
         ApiGatewayV2HttpResponse(body = "Hello, ${event.body}!")
     }
 

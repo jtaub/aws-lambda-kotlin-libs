@@ -8,14 +8,19 @@ import kotlinx.serialization.json.encodeToStream
 import java.io.InputStream
 import java.io.OutputStream
 
-@ExperimentalSerializationApi
-interface LambdaHandler<IN, OUT> {
+/**
+ * An extension of the [LambdaFunction] interface which uses kotlinx-serialization.
+ *
+ * You can implement this interface as an alternative to using [awsLambdaFunction]. However, generally speaking,
+ * [awsLambdaFunction] is preferable, since it lets you have a clear separation of serialization logic and business
+ * logic.
+ */
+interface KotlinxStreamProcessor<IN, OUT> : LambdaFunction<IN, OUT> {
 
     companion object {
         val jsonFormatDefaults = Json {
             coerceInputValues = true
             encodeDefaults = true
-            explicitNulls = true
             ignoreUnknownKeys = true
             useAlternativeNames = false
         }
@@ -47,16 +52,10 @@ interface LambdaHandler<IN, OUT> {
      * This is the function which will actually be called by the AWS Lambda Java runtime.
      * It requires a method with this signature. This method shouldn't be overridden in most circumstances.
      */
-    fun handleRequest(input: InputStream, output: OutputStream) {
+    @ExperimentalSerializationApi
+    override fun handleRequest(input: InputStream, output: OutputStream) {
         val request = outputFormat.decodeFromStream(inputDeserializer, input)
         val response = process(request)
         inputFormat.encodeToStream(outputSerializer, response, output)
     }
-
-    operator fun invoke(input: InputStream, output: OutputStream) = handleRequest(input, output)
-
-    /**
-     * Put your actual "business logic" here.
-     */
-    fun process(event: IN): OUT
 }
