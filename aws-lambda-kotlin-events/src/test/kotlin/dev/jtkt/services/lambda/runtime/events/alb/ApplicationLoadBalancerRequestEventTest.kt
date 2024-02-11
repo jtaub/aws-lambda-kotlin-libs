@@ -1,7 +1,7 @@
 package dev.jtkt.services.lambda.runtime.events.alb
 
 import dev.jtkt.services.lambda.runtime.events.TestUtils.decodeFromOutputStream
-import dev.jtkt.services.lambda.runtime.newLambdaHandler
+import dev.jtkt.services.lambda.runtime.awsLambdaFunction
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 
 class ApplicationLoadBalancerRequestEventTest {
 
-    private val candidate = newLambdaHandler { event: ApplicationLoadBalancerRequestEvent, _ ->
+    private val candidate = awsLambdaFunction { event: ApplicationLoadBalancerRequestEvent ->
         ApplicationLoadBalancerResponseEvent(body = "Hello, ${event.body}!")
     }
 
@@ -49,7 +49,7 @@ class ApplicationLoadBalancerRequestEventTest {
 
         // When
         val outputStream = ByteArrayOutputStream()
-        candidate(input.byteInputStream(), outputStream, null)
+        candidate.handleRequest(input.byteInputStream(), outputStream)
 
         // Then
         val actual = Json.decodeFromOutputStream<ApplicationLoadBalancerResponseEvent>(outputStream)
