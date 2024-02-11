@@ -21,8 +21,3 @@ interface LambdaFunction<IN, OUT> {
      */
     fun handleRequest(input: InputStream, output: OutputStream)
 }
-
-/**
- * Syntax sugar - allows you to call implementations of this interface as if they were a real function.
- */
-operator fun <IN, OUT> LambdaFunction<IN, OUT>.invoke(event: IN): OUT = process(event)
